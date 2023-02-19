@@ -1,3 +1,16 @@
+/**
+ * @file plant.h
+ * @author Angus Jull
+ * @brief Classes and structures related to creating and simulating a plant
+ * @version 0.1
+ * @date 2023-02-18
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+#ifndef plant_h
+#define plant_h
+
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -52,3 +65,5 @@ class simulatedPlant {
         void reset();
         void simulateGrowth(const envProp *weather);  
 };
+
+#endif /* plant_h */

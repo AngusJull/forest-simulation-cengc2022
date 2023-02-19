@@ -19,7 +19,7 @@ simulationGrid::simulationGrid(int _width, int _height, float _squareSize) {
 
 simulationManager::simulationManager(int width, int height, float squareSize) {
     board = new simulationGrid(width, height, squareSize);
-    
+
 }
 simulationManager::~simulationManager(){
     destroyTrees();

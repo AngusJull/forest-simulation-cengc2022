@@ -1,5 +1,10 @@
 #include "plant.h"
 
+/**
+ * @brief Create a default plant property
+ * 
+ * @return plantProp* pointer to the new property
+ */
 plantProp* createPlantProp(){
     plantProp *prop = new plantProp;
     prop->lifetime = 50;
@@ -15,6 +20,8 @@ plantProp* createPlantProp(){
     prop->idealPercip[1] = 1000.0f;
     return prop;
 }
+
+//Clamp a value within min and max
 inline float clamp(float x, float min, float max){
     if (x > max){
         return max;
@@ -24,6 +31,7 @@ inline float clamp(float x, float min, float max){
     }
     return x;
 }
+//Returns the higher value
 inline float max(float x, float y){
     if (x > y){
         return x;
@@ -32,16 +40,28 @@ inline float max(float x, float y){
         return y;
     }
 }
+//Set constants in plant class
 const float simulatedPlant::percipVulnerability = 0.005;
 const float simulatedPlant::tempVulnerability = 0.05;
 
+/**
+ * @brief Construct a new simulated Plant::simulated Plant object
+ * 
+ * @param prop The properties to give this plant
+ */
 simulatedPlant::simulatedPlant(plantProp *prop){
     name = "Default";
     height = 0.01f;
     age = 0;
     properties = prop;
 }
-
+/**
+ * @brief Construct a new simulated Plant::simulated Plant object
+ * 
+ * @param _name the name to give this plant
+ * @param _height the starting height of the plant
+ * @param prop the properties to give this plant
+ */
 simulatedPlant::simulatedPlant(string _name, float _height, plantProp *prop){
     name = _name;
     height = _height;

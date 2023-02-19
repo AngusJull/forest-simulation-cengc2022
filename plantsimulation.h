@@ -8,6 +8,9 @@
  * @copyright Copyright (c) 2023
  * 
  */
+#ifndef plantsimulation_h
+#define plantsimulation_h
+
 #include "plant.h"
 
 typedef struct {
@@ -55,3 +58,5 @@ class simulationManager {
         void resetSimulation();
         void displayBoard();
 };
+
+#endif /* plantsimulation_h */

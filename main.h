@@ -1,4 +1,6 @@
-#pragma once
+#ifndef main_h
+#define main_h
+
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
@@ -20,3 +22,5 @@ namespace testTools{
     float linear(float x);
     float linear_p(float x, float param[]);
 };
+
+#endif /* main_h */
