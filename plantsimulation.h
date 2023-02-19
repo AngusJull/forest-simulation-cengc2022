@@ -1,3 +1,13 @@
+/**
+ * @file plantsimulation.h
+ * @author Angus Jull
+ * @brief Classes related to running a simulation with plants
+ * @version 0.1
+ * @date 2023-02-18
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 #include "plant.h"
 
 typedef struct {
@@ -5,24 +15,30 @@ typedef struct {
     simulatedPlant* storedPlant = NULL;
 } gridsquare;
 
+/**
+ * @brief Class that stores plants in a gird, where each plant occupies a fixed size square area
+ * 
+ * New grid must be created to change its size
+ */
 class simulationGrid {
-    public: 
+    private:
         int width;
-        int height; 
+        int height;
         float squareSize;
         gridsquare *grid;
+    public: 
         inline gridsquare *get(int row, int col) {return grid + width * row + col;}
-        void createGrid(int width, int height, float gridsquareSize);
-        void deleteGrid() {delete[] grid;};
+        simulationGrid(int _width, int _height, float _squareSize);
+        ~simulationGrid(){delete[] grid;}
 };
 
 class simulationManager {
     private:
         int time = 0; //The current time in months
-        simulationGrid board;
+        simulationGrid *board;
         envProp *enviromentData;
-        int envDataSize;
         plantProp *sharedProperties;
+        int envDataSize;
         int sharedPropSize;
 
 
@@ -31,7 +47,7 @@ class simulationManager {
         void destroyBoard();
 
     public:
-        simulationManager(int width, int height, float gridSquareSize);
+        simulationManager(int width, int height, float squareSize);
         ~simulationManager();
 
         void stepSimulation();
