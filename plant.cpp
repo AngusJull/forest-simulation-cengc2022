@@ -68,7 +68,7 @@ simulatedPlant::simulatedPlant(std::string _name, float _height, plantProperties
     age = 0;
     properties = prop;
 }
-//Calculate how well the plant is doing
+//Calculate how well the plant is doing, using the weather and plant's properties
 float simulatedPlant::calculateSatisfaction(const envProperties *weather){
     if (!weather || !properties) return 0;
     float deviance = 0;
@@ -92,11 +92,13 @@ float simulatedPlant::calculateSatisfaction(const envProperties *weather){
     //cout << "Deviance: " << deviance << " Satisfaction " << satisfaction << " Temp " << weather->temp << endl;
     return clamp(satisfaction, -1, 1);
 }
+//Calculate the amount in meters that the plant should grow every year
 float simulatedPlant::calculateGrowth(float satisfaction){
     if (!properties) return 0;
     //return 0.5 * satisfaction * pow(height, 0.6 * properties->growthRate);
     return 0.5 * clamp(satisfaction, 0.0f, 1.0f) * pow(height, 0.6f * properties->growthRate);
 }
+//Simulate the growth of the plant over a month
 void simulatedPlant::simulateGrowth(const envProperties *weather){
     if (!properties) return;
     float growth = calculateGrowth(calculateSatisfaction(weather));
