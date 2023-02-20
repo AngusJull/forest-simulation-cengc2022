@@ -44,7 +44,9 @@ std::string simulationManager::toString() {
     std::string out;
     for (int i = 0; i < board->getHeight(); i++){
         for (int j = 0; j < board->getWidth(); i++){
-            out += board->at(i, j).storedPlant->toString() + "\n";
+            if (board->at(i, j).storedPlant){
+                out += board->at(i, j).storedPlant->toString() + "\n";
+            }
         }
     }
     return out;
