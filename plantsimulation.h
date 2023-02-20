@@ -13,6 +13,8 @@
 
 #include "plant.h"
 
+namespace plantSimulation {
+
 typedef struct {
     int x, y;
     simulatedPlant* storedPlant = NULL;
@@ -44,8 +46,6 @@ class simulationManager {
         int envDataSize;
         int sharedPropSize;
 
-
-        void readPlantData(string filename);
         void destroyTrees();
         void destroyBoard();
 
@@ -58,5 +58,5 @@ class simulationManager {
         void resetSimulation();
         void displayBoard();
 };
-
+}; // plantSimulation namespace
 #endif /* plantsimulation_h */

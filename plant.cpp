@@ -1,5 +1,7 @@
 #include "plant.h"
 
+using namespace plantSimulation;
+
 /**
  * @brief Create a default plant property
  * 
@@ -60,7 +62,7 @@ simulatedPlant::simulatedPlant(plantProperties *prop){
  * @param _height the starting height of the plant
  * @param prop the properties to give this plant
  */
-simulatedPlant::simulatedPlant(string _name, float _height, plantProperties *prop){
+simulatedPlant::simulatedPlant(std::string _name, float _height, plantProperties *prop){
     name = _name;
     height = _height;
     age = 0;

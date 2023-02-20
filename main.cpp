@@ -63,7 +63,7 @@ void testTools::drawTestParamFunction(float func(float x, float param[]), float 
         prev = temp;
     }
 }
-void testTools::drawTestPlantGrowth(simulatedPlant *plant, ALLEGRO_COLOR *drawColor, envProperties *weather, int iterations, int maxHeight){
+void testTools::drawTestPlantGrowth(plantSimulation::simulatedPlant *plant, ALLEGRO_COLOR *drawColor, plantSimulation::envProperties *weather, int iterations, int maxHeight){
     float previousHeight = 0;
     int month = 0;
     for (int i = 1; i < iterations; i++, month++){

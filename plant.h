@@ -15,7 +15,7 @@
 #include <string>
 #include <cmath>
 
-using namespace std;
+namespace plantSimulation {
 
 //All properties about the enviroment at the plant's position that a plant needs to be given
 class envProperties {
@@ -62,13 +62,14 @@ class simulatedPlant {
         virtual float calculateGrowth(float satisfaction); 
         virtual float calculateSatisfaction(const envProperties *weather);
         simulatedPlant(plantProperties *prop);
-        simulatedPlant(string _name, float _height, plantProperties *prop);
+        simulatedPlant(std::string _name, float _height, plantProperties *prop);
         
         string getName(){return name;}
         float getHeight(){return height;}
         int getAge(){return age;}
         void reset();
         void simulateGrowth(const envProperties *weather);  
+};
 };
 
 #endif /* plant_h */
