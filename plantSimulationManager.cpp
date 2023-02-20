@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2023
  * 
  */
-#include "plantsimulation.h"
+#include "plantSimulationManager.h"
 
 using namespace plantSimulation;
 
@@ -24,7 +24,10 @@ simulationGrid::~simulationGrid() {
     }
     delete[] grid;
 }
-
+gridsquare& simulationGrid::at(int row, int col) {
+    gridsquare &ref =  *(grid + width * row + col);
+    return ref;
+}
 simulationManager::simulationManager(int width, int height, float squareSize) {
     board = new simulationGrid(width, height, squareSize);
 
@@ -37,3 +40,12 @@ void simulationManager::newBoard(int width, int height, float squareSize) {
     board = new simulationGrid(width, height, squareSize);
 }
 
+std::string simulationManager::toString() {
+    std::string out;
+    for (int i = 0; i < board->getHeight(); i++){
+        for (int j = 0; j < board->getWidth(); i++){
+            out += board->at(i, j).storedPlant->toString() + "\n";
+        }
+    }
+    return out;
+}

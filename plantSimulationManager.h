@@ -13,6 +13,7 @@
 
 #include "plant.h"
 #include <vector>
+#include <string>
 
 namespace plantSimulation {
 
@@ -32,10 +33,15 @@ class simulationGrid {
         int height;
         float squareSize;
         gridsquare *grid;
+
     public: 
-        inline gridsquare *get(int row, int col) {return grid + width * row + col;}
         simulationGrid(int _width, int _height, float _squareSize);
         ~simulationGrid();
+
+        int getWidth() {return width;}
+        int getHeight() {return height;}
+        int getSquareSize() {return squareSize;}
+        gridsquare &at(int row, int col);
 };
 
 class simulationManager {
@@ -53,6 +59,7 @@ class simulationManager {
         void runSimulation(int iterations);
         void resetSimulation();
         void newBoard(int width, int height, float squareSize);
+        std::string toString();
 };
 }; // plantSimulation namespace
 #endif /* plantsimulation_h */

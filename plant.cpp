@@ -68,6 +68,10 @@ simulatedPlant::simulatedPlant(std::string _name, float _height, plantProperties
     age = 0;
     properties = prop;
 }
+//
+std::string simulatedPlant::toString() {
+    return name + ": " + " Height: " + std::to_string(height) + " Age: " + std::to_string(age);
+}
 //Calculate how well the plant is doing, using the weather and plant's properties
 float simulatedPlant::calculateSatisfaction(const envProperties *weather){
     if (!weather || !properties) return 0;

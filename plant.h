@@ -23,8 +23,8 @@ class envProperties {
         float temp;
         float percip;
         float month;
-        envProperties();
-        ~envProperties();
+        envProperties(){};
+        ~envProperties(){};
 };
 
 class plantProperties {
@@ -53,22 +53,24 @@ class simulatedPlant {
         static const float tempVulnerability; //How much to lower satisfaction by for every degree outside nominal
         static const float percipVulnerability; //How much to lower satisfaction by for every mm of rain per year outside nominal
 
-        string name;
+        std::string name;
         float height = 0.01; //In meters
         int age = 1;
         plantProperties *properties; // Pointer to plant properties, needs to be created / destroyed outside the class
 
     public:
-        virtual float calculateGrowth(float satisfaction); 
-        virtual float calculateSatisfaction(const envProperties *weather);
         simulatedPlant(plantProperties *prop);
         simulatedPlant(std::string _name, float _height, plantProperties *prop);
         
-        string getName(){return name;}
+        std::string getName(){return name;}
         float getHeight(){return height;}
         int getAge(){return age;}
+        std::string toString();
         void reset();
+
         void simulateGrowth(const envProperties *weather);  
+        virtual float calculateGrowth(float satisfaction); 
+        virtual float calculateSatisfaction(const envProperties *weather);
 };
 };
 
