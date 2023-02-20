@@ -70,7 +70,7 @@ simulatedPlant::simulatedPlant(std::string _name, float _height, plantProperties
 }
 //Calculate how well the plant is doing
 float simulatedPlant::calculateSatisfaction(const envProperties *weather){
-    if (!weather) return 0;
+    if (!weather || !properties) return 0;
     float deviance = 0;
     float satisfaction = 0;
     if (weather->temp < properties->idealTemp[0]){
@@ -93,10 +93,12 @@ float simulatedPlant::calculateSatisfaction(const envProperties *weather){
     return clamp(satisfaction, -1, 1);
 }
 float simulatedPlant::calculateGrowth(float satisfaction){
+    if (!properties) return 0;
     //return 0.5 * satisfaction * pow(height, 0.6 * properties->growthRate);
     return 0.5 * clamp(satisfaction, 0.0f, 1.0f) * pow(height, 0.6f * properties->growthRate);
 }
 void simulatedPlant::simulateGrowth(const envProperties *weather){
+    if (!properties) return;
     float growth = calculateGrowth(calculateSatisfaction(weather));
     if (height < (1.5f*properties->maxHeight) && height < 1000.0f){
         height += growth / pow(max(height - properties->maxHeight, 1), 2);
