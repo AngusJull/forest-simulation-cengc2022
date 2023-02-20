@@ -29,20 +29,39 @@ class envProperties {
 
 class plantProperties {
     public:
-        int modifiers = 0;
-        int lifetime;
-
-        float maxHeight;
-        float growthRate;
-        float shadeTolerance;
-        float seedsProduced;
-        float seedRadius;
-        float seedTime;
-
-        float idealTemp[2]; //First value is low, second is high
-        float idealPercip[2]; //First value is low, second is high 
+        //General characteristics
+        const int modifiers = 0;
+        const int lifetime = 10;
+        //Growth and reproductive characteristics
+        const float maxHeight = 100;
+        const float growthRate = 0.5;
+        const float shadeTolerance = 0.5;
+        const float seedsProduced = 10;;
+        const float seedRadius = 10;
+        const float seedTime = 5;
+        //Temperature in degrees C
+        const float lowIdealTemp = 0;
+        const float highIdealTemp = 20;
+        //Percip in mm per year
+        const float lowIdealPercip = 200;
+        const float highIdealPercip = 800; 
 
         plantProperties();
+        plantProperties(int modifiers, int lifetime, float maxHeight, float growthRate, float shadeTolerance, 
+                        float seedsProduced, float seedRadius, float seedTime, float lowIdealTemp, 
+                        float highIdealTemp, float lowIdealPercip, float highIdealPercip): 
+                        modifiers(modifiers), 
+                        lifetime(lifetime), 
+                        maxHeight(maxHeight), 
+                        growthRate(growthRate),
+                        shadeTolerance(shadeTolerance), 
+                        seedsProduced(seedsProduced), 
+                        seedRadius(seedRadius), 
+                        seedTime(seedTime),
+                        highIdealTemp(highIdealTemp),
+                        lowIdealTemp(lowIdealTemp),
+                        highIdealPercip(highIdealPercip),
+                        lowIdealPercip(lowIdealPercip) {};
         ~plantProperties(){};
 };
 
