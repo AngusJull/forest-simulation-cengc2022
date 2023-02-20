@@ -18,14 +18,22 @@ simulationGrid::simulationGrid(int _width, int _height, float _squareSize) {
     width = _width;
     height = _height;
 }
+simulationGrid::~simulationGrid() {
+    for (int i = 0; i < width * height; i++){
+        delete grid[i].storedPlant;
+    }
+    delete[] grid;
+}
 
 simulationManager::simulationManager(int width, int height, float squareSize) {
     board = new simulationGrid(width, height, squareSize);
 
 }
-simulationManager::~simulationManager(){
-    destroyTrees();
-    destroyBoard();
+simulationManager::~simulationManager() {
+    delete board;
 }
-
+void simulationManager::newBoard(int width, int height, float squareSize) {
+    delete board;
+    board = new simulationGrid(width, height, squareSize);
+}
 

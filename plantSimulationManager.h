@@ -12,6 +12,7 @@
 #define plantsimulation_h
 
 #include "plant.h"
+#include <vector>
 
 namespace plantSimulation {
 
@@ -34,20 +35,15 @@ class simulationGrid {
     public: 
         inline gridsquare *get(int row, int col) {return grid + width * row + col;}
         simulationGrid(int _width, int _height, float _squareSize);
-        ~simulationGrid(){delete[] grid;}
+        ~simulationGrid();
 };
 
 class simulationManager {
     private:
         int time = 0; //The current time in months
         simulationGrid *board;
-        envProperties *enviromentData;
-        plantProperties *sharedProperties;
-        int envDataSize;
-        int sharedPropSize;
-
-        void destroyTrees();
-        void destroyBoard();
+        std::vector<envProperties> enviromentData;
+        std::vector<plantProperties> sharedProperties;
 
     public:
         simulationManager(int width, int height, float squareSize);
@@ -56,7 +52,7 @@ class simulationManager {
         void stepSimulation();
         void runSimulation(int iterations);
         void resetSimulation();
-        void displayBoard();
+        void newBoard(int width, int height, float squareSize);
 };
 }; // plantSimulation namespace
 #endif /* plantsimulation_h */
