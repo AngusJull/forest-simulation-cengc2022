@@ -10,6 +10,8 @@
  */
 #include "plantsimulation.h"
 
+using namespace plantSimulation;
+
 simulationGrid::simulationGrid(int _width, int _height, float _squareSize) {
     grid = new gridsquare[width * height]; // Underlying structure is a one dimensional array
     squareSize = _squareSize;
