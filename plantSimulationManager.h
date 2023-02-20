@@ -18,7 +18,7 @@
 namespace plantSimulation {
 
 typedef struct {
-    int x, y;
+    float shade;
     simulatedPlant* storedPlant = NULL;
 } gridsquare;
 
@@ -48,8 +48,8 @@ class simulationManager {
     private:
         int time = 0; //The current time in months
         simulationGrid *board;
-        std::vector<envProperties> enviromentData;
-        std::vector<plantProperties> sharedProperties;
+        std::vector<envProperties*> enviromentData;
+        std::vector<plantProperties*> sharedProperties;
 
     public:
         simulationManager(int width, int height, float squareSize);
@@ -57,8 +57,10 @@ class simulationManager {
 
         void stepSimulation();
         void runSimulation(int iterations);
+        bool addPlantAtLocation(int x, int y, plantProperties *prop);
         void resetSimulation();
         void newBoard(int width, int height, float squareSize);
+
         std::string toString();
 };
 }; // plantSimulation namespace
