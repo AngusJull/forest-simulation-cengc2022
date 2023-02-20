@@ -39,8 +39,8 @@ class simulationManager {
     private:
         int time = 0; //The current time in months
         simulationGrid *board;
-        envProp *enviromentData;
-        plantProp *sharedProperties;
+        envProperties *enviromentData;
+        plantProperties *sharedProperties;
         int envDataSize;
         int sharedPropSize;
 

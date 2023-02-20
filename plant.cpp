@@ -5,24 +5,22 @@
  * 
  * @return plantProp* pointer to the new property
  */
-plantProp* createPlantProp(){
-    plantProp *prop = new plantProp;
-    prop->lifetime = 50;
-    prop->maxHeight = 100.0f;
-    prop->growthRate = 0.5f;
-    prop->shadeTolerance = 1.0f;
-    prop->seedsProduced = 2.0f;
-    prop->seedRadius = 10.0f;
-    prop->seedTime = 10.0f;
-    prop->idealTemp[0] = 0.0f;
-    prop->idealTemp[1] = 20.0f;
-    prop->idealPercip[0] = 100.0f;
-    prop->idealPercip[1] = 1000.0f;
-    return prop;
+plantProperties::plantProperties(){
+    lifetime = 50;
+    maxHeight = 100.0f;
+    growthRate = 0.5f;
+    shadeTolerance = 1.0f;
+    seedsProduced = 2.0f;
+    seedRadius = 10.0f;
+    seedTime = 10.0f;
+    idealTemp[0] = 0.0f;
+    idealTemp[1] = 20.0f;
+    idealPercip[0] = 100.0f;
+    idealPercip[1] = 1000.0f;
 }
 
 //Clamp a value within min and max
-inline float clamp(float x, float min, float max){
+static inline float clamp(float x, float min, float max){
     if (x > max){
         return max;
     }
@@ -32,7 +30,7 @@ inline float clamp(float x, float min, float max){
     return x;
 }
 //Returns the higher value
-inline float max(float x, float y){
+static inline float max(float x, float y){
     if (x > y){
         return x;
     }
@@ -49,7 +47,7 @@ const float simulatedPlant::tempVulnerability = 0.05;
  * 
  * @param prop The properties to give this plant
  */
-simulatedPlant::simulatedPlant(plantProp *prop){
+simulatedPlant::simulatedPlant(plantProperties *prop){
     name = "Default";
     height = 0.01f;
     age = 0;
@@ -62,14 +60,14 @@ simulatedPlant::simulatedPlant(plantProp *prop){
  * @param _height the starting height of the plant
  * @param prop the properties to give this plant
  */
-simulatedPlant::simulatedPlant(string _name, float _height, plantProp *prop){
+simulatedPlant::simulatedPlant(string _name, float _height, plantProperties *prop){
     name = _name;
     height = _height;
     age = 0;
     properties = prop;
 }
 //Calculate how well the plant is doing
-float simulatedPlant::calculateSatisfaction(const envProp *weather){
+float simulatedPlant::calculateSatisfaction(const envProperties *weather){
     if (!weather) return 0;
     float deviance = 0;
     float satisfaction = 0;
@@ -96,7 +94,7 @@ float simulatedPlant::calculateGrowth(float satisfaction){
     //return 0.5 * satisfaction * pow(height, 0.6 * properties->growthRate);
     return 0.5 * clamp(satisfaction, 0.0f, 1.0f) * pow(height, 0.6f * properties->growthRate);
 }
-void simulatedPlant::simulateGrowth(const envProp *weather){
+void simulatedPlant::simulateGrowth(const envProperties *weather){
     float growth = calculateGrowth(calculateSatisfaction(weather));
     if (height < (1.5f*properties->maxHeight) && height < 1000.0f){
         height += growth / pow(max(height - properties->maxHeight, 1), 2);

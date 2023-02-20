@@ -16,7 +16,7 @@
 namespace testTools{
     void drawTestFunction(float func(float x), int iterations);
     void drawTestParamFunction(float func(float x, float param[]), float param[], ALLEGRO_COLOR colour,  int iterations, float maxValue, float rng);
-    void drawTestPlantGrowth(simulatedPlant *plant, ALLEGRO_COLOR *drawColor, envProp *weather, int iterations, int maxHeight);
+    void drawTestPlantGrowth(simulatedPlant *plant, ALLEGRO_COLOR *drawColor, envProperties *weather, int iterations, int maxHeight);
     float exponential(float x, float param[]);
     float x_squared(float x);
     float linear(float x);

@@ -63,7 +63,7 @@ void testTools::drawTestParamFunction(float func(float x, float param[]), float 
         prev = temp;
     }
 }
-void testTools::drawTestPlantGrowth(simulatedPlant *plant, ALLEGRO_COLOR *drawColor, envProp *weather, int iterations, int maxHeight){
+void testTools::drawTestPlantGrowth(simulatedPlant *plant, ALLEGRO_COLOR *drawColor, envProperties *weather, int iterations, int maxHeight){
     float previousHeight = 0;
     int month = 0;
     for (int i = 1; i < iterations; i++, month++){
@@ -98,9 +98,9 @@ float testTools::exponential(float x, float param[]){
     }*/
 
 //Testing Plant Growth Characteristics
-/*plantProp *properties = createPlantProp();
+/*plantProperties properties;
 simulatedPlant testPlant(properties);
-envProp testEnv[12];
+envProperties testEnv[12];
 for (int i = 0; i < 12; i++){
     testEnv[i].month = i;
     testEnv[i].temp = (20.0f / 11.0f) * i;
